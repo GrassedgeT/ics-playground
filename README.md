@@ -1,12 +1,14 @@
 # openoperator-start-kit
 
+赛事官网->https://openoperator.cn
+
 此仓库是openoperator赛事举办方提供的模板仓库。选手可以直接Fork此仓库作为自己队伍的仓库。
 
 ## Quick Start
 
 1. Fork此仓库
 2. 点击`settings`->`webhooks`->`Add webhook`，配置webhook
-   1. ``Payload URL`填写`http://152.136.18.42:8000/webhook`
+   1. `Payload URL`填写`http://152.136.18.42:8000/webhook`
    2. `Content type`选择`application/json`
    3. `Secret`填写分配到的密钥（参赛信息收集完成后会分发随机的`webhook secret`）
    4. `SSL verification`选择`Disable`
@@ -54,6 +56,15 @@
 1. 代码文件必须以题目名称命名，这是评估脚本能找到你代码的关键要求。
 2. 代码中要覆盖头文件引用，核函数定义和用于外部调用的函数定义。
 3. 用于外部调用的函数名必须设置为bang_func，bang_func的返回值为`torch::Tensor`，输入参数包含`torch::Tensor input`和参考代码中`__init__`部分定义的其他参数，请参考LeakyReLU示例进行理解。
+
+## 题目&打分
+
+题目按照类别分为`basic`，`easy`，`medium`，`hard`。其中`basic`是必做题，其他类为挑战题。
+
+打分有两个指标：
+
+- 算子结果必须与参考结果误差不大于1e-2，精度达标后性能评估结果才有效
+- 性能分数按照`bangc`代码硬件时间相对于`torch`的执行时间赋值
 
 ## 最佳实践
 
